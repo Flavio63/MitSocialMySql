@@ -1,0 +1,262 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 24-lug-2014, 15.35.59
+    Author     : flaviovilla
+*/
+body{
+    background: url(../images/logomigrandenew.jpg);
+    background-size: 300px auto;
+    background-repeat: no-repeat;
+    background-position: 0% 0%;
+}
+#main {
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#header {
+    height: 245px;
+    
+}
+#header, #content, #footer {
+    font-size: 0.75em;
+}
+.col-1, .col-2, .col-3 {
+    float: left;
+}
+
+.col-1{
+    width: 100%;
+}
+
+.col-1 .list{
+    margin-left: 300px;
+    margin-top: 71px;
+    font-size: 20px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    list-style: none;
+    text-align: center;
+    border-top: 2px solid #e80000;
+    border-bottom: 2px solid #e80000;
+    letter-spacing: 6px;
+}
+.col-1 .list li{
+    display: inline;
+    text-transform: uppercase;
+    background-color: #444444;
+    padding-left: 5px;
+}
+
+.col-1 .list li a{
+    text-decoration: none;
+    color: #eee;
+}
+
+.col-1 .list li a:hover {
+    text-decoration: underline;
+}
+/* end of home page */
+/* base per la seconda colonna */
+.col-2{
+    margin-left: 110px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.listClient{
+    list-style: none;
+    
+}
+
+.listClient li{
+    background-color: #f6f6f6;
+}
+
+.listClient h3{
+    font-size: 25px;
+    background-color: #444444;
+    padding-bottom: 2px;
+}
+
+.listClient a{
+    //text-decoration: none;
+    color: #eee;
+}
+
+.listClient a:hover{
+    text-decoration: underline;
+}
+
+ .listClient .card{
+    margin-top: -25px;
+    padding-top: 5px;
+}
+/* end of listClient */
+
+.detail{
+    border: 4px solid #e80000;
+    background-color:#e9e9e9;
+    color: #444444;
+    padding: 10px;
+}
+
+.detailTitle{
+    text-align: center;
+}
+
+.detail th, td{
+    border-bottom: 5px solid #aaaaaa;
+    padding: 5px;
+    padding-right: 10px;
+    text-align: left;
+}
+.detail td{
+    background-color: white;
+}
+
+/* end of detail table */
+.statuses{
+    font-size: 15px;
+    padding: 10px;
+    border-bottom: 2px solid #e6e6e6;
+    text-align: center;
+}
+
+.change-status-link{
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #444444;
+    text-decoration: none;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    color: #eee;
+}
+.change-status-link:hover{
+    text-decoration: underline;
+}
+
+.actions {
+    text-align: center;
+    padding: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-top: 2px solid #e80000;
+    border-bottom: 2px solid #e80000;
+}
+
+.actions a{
+    background-color: #444444;
+    text-decoration: none;
+    padding: 0 50px;
+    color: #eee;
+}
+.actions a:hover{
+    text-decoration: underline;
+}
+
+.goback{
+    font-size: 10px;
+    text-transform: uppercase;
+    text-decoration:none;
+    background-color:#444444;
+    color: #eee;
+    padding: 5px;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+}
+.goback:hover{
+    text-decoration: underline;
+}
+/* end detail page */
+
+.edit{
+    text-align: center;
+}
+form{
+    background: linear-gradient(to bottom right, #eeeeee, #aaaaaa);
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: bold;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    padding:10px;
+    border: 1px solid #999;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+.field{
+    font-size: 20px;
+    border-bottom: 3px solid #aaaaaa;
+    padding: 5px;
+}
+fieldset{
+    border: none;
+}
+input, select{
+    font-size: 20px;
+    border: none;
+    background-color: transparent;
+}
+
+select{
+    color: red;
+}
+
+::-webkit-input-placeholder{color: red;}
+::-moz-palceholder{color:red;}
+:-ms-input-placeholder{color:red;}
+
+[txt-tooltip]{
+    position: relative;
+}
+[txt-tooltip]:before{
+    content: '';
+    display: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #1a1a1a;
+    position: absolute;
+    top: 30px;
+    left: 35px;
+    z-index: 8;
+    font-size: 0;
+    line-height: 0;
+    width: 0;
+    height: 0;
+}
+[txt-tooltip]:after{
+    display: none;
+    content: attr(txt-tooltip);
+    position: absolute;
+    top: 35px;
+    left: 0px;
+    padding: 5px 8px;
+    background-color: #444444;
+    color: #fff;
+    z-index: 9;
+    font-size: 0.75em;
+    height: 18px;
+    line-height: 18px;
+    -webkit-border-radius: 5px;
+    -moz-border-radiu: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 8px 8px 3px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 8px 8px 3px rgba(0, 0, 0, 0.4);
+    box-shadow: 8px 8px 3px rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+    word-wrap: normal;
+}
+[txt-tooltip]:hover:before, [txt-tooltip]:hover:after{
+    display: block;
+}
+#footer {
+    height: 89px;
+}

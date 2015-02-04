@@ -1,0 +1,142 @@
+<?php
+
+//~ Template for add-edit.php
+// variables:
+//  $errors - validation errors
+//  $clientsocials - submitted ClientSocials
+//  $edit - true for EDIT, false for ADD
+
+function error_field($title, array $errors) {
+    foreach ($errors as $error) {
+        /* @var $error Error */
+        if ($error->getSource() == $title) {
+            return ' error-field';
+        }
+    }
+    return '';
+}
+
+/* @var $clientsocials ClientSocials */
+?>
+
+<h1 class="title edit">
+    <?php if ($edit): ?>
+        <?php echo Utils::escape($clientsocials->getName()); ?>
+    <?php else: ?>
+        Add new Client Socials parameters
+    <?php endif; ?>
+</h1>
+
+<?php if (!empty($errors)): ?>
+<ul class="errors">
+    <?php foreach ($errors as $error): ?>
+        <?php /* @var $error Error */ ?>
+        <li><?php echo $error->getMessage(); ?></li>
+    <?php endforeach; ?>
+</ul>
+<?php endif; ?>
+
+<form id="add_edit_form" action="#" method="post">
+    <fieldset>
+        <div class="field" txt-tooltip="Inserire il nome del cliente che verrà mostrato in pagina">
+            <label>Client Name:</label>
+            <input type="text" name="clientsocials[name]" placeholder="nome del cliente" value="<?php echo Utils::escape($clientsocials->getName()); ?>"
+                   class="text<?php echo error_field('name', $errors); ?>"/>
+        </div>
+        <div class="field" txt-tooltip="Inserire il nome di chi sta immettendo i dati">
+            <label>Created By:</label>
+            <input type="text" placeholder="il tuo nome :)" name="clientsocials[created_by]" value="<?php echo Utils::escape($clientsocials->getCreatedBy()); ?>"
+                   class="text<?php echo error_field('created_by', $errors); ?>" />
+        </div>
+        <div class="field">
+            <a txt-tooltip="è il nome che si trova nella barra degli indirizzi">
+                <label>Screen Name Facebook: </label>
+                <input id='screenNameFacebook' type="text" name="clientsocials[screen_name_facebook]" placeholder="screen name"
+                       value="<?php echo Utils::escape($clientsocials->getScreenNameFacebook()); ?>"
+                       class="text<?php echo error_field('screen_name_facebook', $errors); ?>" />
+            </a>
+            <a txt-tooltip="il numero verrà immesso usando il punto di domanda.">
+            <label>Number Id: </label>
+            <input type="text" name="clientsocials[id_number_facebook]" value="<?php echo Utils::escape($clientsocials->getIdNumberFacebook()); ?>"
+                   class="text<?php echo error_field('id_number_facebook', $errors); ?>" />
+            </a>
+            <a txt-tooltip="Click per trovare il codice numerico, è importante.">
+                <input type="button" value="?" onclick='searchFacebookIdNumber("" + screenNameFacebook.value + "");'>
+            </a>
+        </div>
+        <div class="field">
+            <a txt-tooltip="è il nome che si trova alla fine nella barra del browser">
+            <label>Screen Name Twitter: </label>
+            <input type="text" name="clientsocials[screen_name_twitter]" placeholder="screen name" value="<?php echo Utils::escape($clientsocials->getScreenNameTwitter());?>"
+                   class="text<?php echo error_field('screen_name_twitter', $errors); ?>" />
+            </a>
+            <a txt-tooltip="si possono inserire più hashtag separati dalla virgola">
+            <label>Hashtag: </label>
+            <input type="text" name="clientsocials[hashtag_twitter]" placeholder="#hashtag1, #hashtag2, etc" value="<?php echo Utils::escape($clientsocials->getHashtagTwitter());?>"
+                   class="text<?php echo error_field('hashtag_twitter', $errors); ?>" />
+            </a>
+        </div>
+        <div class="field" txt-tooltip="è il nome del canale">
+            <label>Screen Name Youtube: </label>
+            <input type="text" name="clientsocials[screen_name_youtube]" value="<?php echo Utils::escape($clientsocials->getScreenNameYoutube());?>"
+                   class="text<?php echo error_field('screen_name_youtube', $errors); ?>" />
+        </div>
+        <div class="field">
+            <a txt-tooltip="Può essere un nome preceduto dal segno + o un numero che identifica il cliente">
+            <label>N. Id / Screen Name Google+: </label>
+            <input type="text" name="clientsocials[id_gplus]" placeholder="O numero o +nome" value="<?php echo Utils::escape($clientsocials->getIdGplus());?>"
+                   class="text<?php echo error_field('id_gplus', $errors); ?>" />
+            </a>
+            <a txt-tooltip="Scelta predefinita: 0 indica una pagina pubblica, 1 indica un profilo di utente">
+            <label>Page's Type: </label>
+            <select name="clientsocials[gplus_type]">
+                <?php foreach (ClientSocials::typeOfGooglePages() as $gplusType): ?>
+                <option value="<?php echo $gplusType; ?>" <?php if ($gplusType === $clientsocials->getGPlusType()): ?> selected="selected" <?php endif; ?> >
+                    <?php echo $gplusType; ?>
+                </option>
+                <?php endforeach; ?>
+            </select>
+            </a>
+        </div>
+        <div class="field">
+            <a txt-tooltip="è il nome che si trova nella barra degli indirizzi">
+            <label>Screen Name Instagram: </label>
+            <input id="screenNameInstagram" type="text" name="clientsocials[screen_name_instagram]" value="<?php echo Utils::escape($clientsocials->getScreenNameInstagram());?>"
+                   class="text<?php echo error_field('screen_name_instagram', $errors); ?>" />
+            </a>
+            <a txt-tooltip="il numero verrà immesso usando il punto di domanda.">
+            <label>Number Id: </label>
+            <input type="text" name="clientsocials[id_number_instagram]" value="<?php echo Utils::escape($clientsocials->getIdNumberInstagram());?>"
+                   class="text<?php echo error_field('id_number_instagram', $errors); ?>" />
+            </a>
+            <a txt-tooltip="Click per trovare il codice numerico, è importante.">
+                <input type="button" value="?" onclick='searchInstagramIdNumber("" + screenNameInstagram.value + "");'>
+            </a>
+        </div>
+        <div class="field" txt-tooltip="è il nome che si trova nella barra degli indirizzi">
+            <label>Screen Name Pinterest: </label>
+            <input type="text" name="clientsocials[screen_name_pinterest]" value="<?php echo Utils::escape($clientsocials->getScreenNamePinterest());?>"
+                   class="text<?php echo error_field('screen_name_pinterest', $errors); ?>" />
+        </div>
+        <div class="field" txt-tooltip="è il nome che si trova nella barra degli indirizzi">
+            <label>Screen Name Vimeo: </label>
+            <input type="text" name="clientsocials[screen_name_vimeo]" value="<?php echo Utils::escape($clientsocials->getScreenNameVimeo());?>"
+                   class="text<?php echo error_field('screen_name_vimeo', $errors); ?>" />
+        </div>
+        <div class="field" txt-tooltip="è il nome che si trova nella barra degli indirizzi">
+            <label>Screen Name Tumblr: </label>
+            <input type="text" name="clientsocials[screen_name_tumblr]" value="<?php echo Utils::escape($clientsocials->getScreenNameTumblr());?>"
+                   class="text<?php echo error_field('screen_name_tumblr', $errors); ?>" />
+        </div>
+        <div class="field" txt-tooltip="è il nome che si trova nella barra degli indirizzi">
+            <label>Link to the Compagny: </label>
+            <input type="text" name="clientsocials[lnk_company]" value="<?php echo Utils::escape($clientsocials->getLnkCompany());?>"
+                   class="text<?php echo error_field('lnk_company', $errors); ?>" />
+        </div>
+        <div class="wrapper">
+            <input type="submit" name="cancel" value="CANCEL" class="submit" />
+            <input type="submit" name="save" value="<?php 
+            echo $edit ? 'EDIT' : 'ADD'; ?>" class="submit" />
+        </div>
+    </fieldset>
+</form>

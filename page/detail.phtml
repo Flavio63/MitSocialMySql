@@ -1,0 +1,116 @@
+<?php
+
+//~ Template for detail.php
+// variables:
+//  $clientsocials - ClientSocials to be displayed
+//  $tooLate - if the task should have been done already
+
+/* @var $clientsocials ClientSocials */
+?>
+
+<h1 class="detailTitle">
+    <?php echo Utils::escape($clientsocials->getName()); ?>
+</h1>
+
+<table class="detail">
+    <tr>
+        <th>Created By</th>
+        <td><?php echo Utils::escape($clientsocials->getCreatedBy()); ?></td>
+        <th></th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>Created On</th>
+        <td><?php echo Utils::escape(Utils::formatDateTime($clientsocials->getCreatedOn())); ?></td>
+        <th></th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>Last Modified On</th>
+        <td><?php echo Utils::escape(Utils::formatDateTime($clientsocials->getLastModifiedOn())); ?></td>
+        <th></th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td><?php echo Utils::capitalize($clientsocials->getStatus()); ?></td>
+        <th></th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>Screen Name Facebook</th>
+        <td><?php echo Utils::escape($clientsocials->getScreenNameFacebook()); ?></td>
+        <th>Number Id</th>
+        <td><?php echo Utils::escape($clientsocials->getIdNumberFacebook()); ?></td>
+    </tr>
+    <tr>
+        <th>Screen Name Twitter</th>
+        <td><?php echo Utils::escape($clientsocials->getScreenNameTwitter()); ?></td>
+        <th>Hashtag</th>
+        <td><?php echo Utils::escape($clientsocials->getHashtagTwitter()); ?></td>
+    </tr>
+    <tr>
+        <th>Screen Name Youtube</th>
+        <td><?php echo Utils::escape($clientsocials->getScreenNameYoutube()); ?></td>
+        <th></th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>N. Id / Screen Name Google+</th>
+        <td><?php echo Utils::escape($clientsocials->getIdGplus()); ?></td>
+        <th>Page's type</th>
+        <td><?php echo Utils::escape($clientsocials->getGPlusType()); ?></td>
+    </tr>
+    <tr>
+        <th>Screen Name Instagram</th>
+        <td><?php echo Utils::escape($clientsocials->getScreenNameInstagram()); ?></td>
+        <th>Number Id</th>
+        <td><?php echo Utils::escape($clientsocials->getIdNumberInstagram()); ?></td>
+    </tr>
+    <tr>
+        <th>Screen Name Pinterest</th>
+        <td><?php echo Utils::escape($clientsocials->getScreenNamePinterest()); ?></td>
+        <th></th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>Screen Name Vimeo</th>
+        <td><?php echo Utils::escape($clientsocials->getScreenNameVimeo()); ?></td>
+        <th></th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>Screen Name Tumblr</th>
+        <td><?php echo Utils::escape($clientsocials->getScreenNameTumblr()); ?></td>
+        <th></th>
+        <td></td>
+    </tr>
+    <tr>
+        <th>Link to the Client's Page</th>
+        <td><?php echo Utils::escape($clientsocials->getLnkCompany()); ?></td>
+        <th></th>
+        <td></td>
+    </tr>
+</table>
+<div class="statuses">
+    <?php foreach (ClientSocials::allStatuses() as $status): ?>
+        <?php if ($status != $clientsocials->getStatus()): ?>
+            <a href="<?php echo Utils::createLink('change-status', array('id' => $clientsocials->getId(), 'status' => $status)); ?>" title="Change work status to <?php echo Utils::capitalize($status); ?>." class="change-status-link">
+                <?php echo $status; ?></a>
+        <?php else : ?>
+            <a>This work is already signed with status: <?php echo $status; ?></a>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</div>
+<div class="actions">
+    <a href="http://flavilla.altervista.org/MITsocialStreamBKD/index.php?id=<?php echo $clientsocials->getIdLong(); ?>" target="_blank">Show Stream</a>"
+    <!--<a href="http://localhost/MITsocialStreamBKD/index.php?id=<?php// echo $clientsocials->getIdLong(); ?>" target="_blank">Show Stream</a>
+    <a href="<?php //echo Utils::createLink('showstream', array('id' => $clientsocials->getId())); ?>" target="_blank">Show Stream</a>-->
+    <a href="<?php echo Utils::createLink('add-edit', array('id' => $clientsocials->getId())); ?>">edit</a>
+    <a href="<?php echo Utils::createLink('delete', array('id' => $clientsocials->getId())); ?>" id="delete-link">delete</a>
+</div>
+<p>
+    <?php $backLink = Utils::createLink('list', array('status' => $clientsocials->getStatus())); ?>
+    <a href="<?php echo $backLink; ?>"></a>
+    <a class="goback" href="<?php echo $backLink; ?>">To the list</a>
+</p>

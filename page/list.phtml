@@ -1,0 +1,28 @@
+<?php
+
+//~ Template for list.php
+// variables:
+//  $title - page title
+//  $status - status of TODOs to be displayed
+//  $todos - TODOs to be displayed
+
+?>
+
+<h1>
+    <?php echo $name; ?>
+</h1>
+
+<?php if (empty($client)): ?>
+    <p>No Client Socials items found.</p>
+<?php else: ?>
+    <ul class="listClient">
+        <?php foreach ($client as $clientsocials): ?>
+            <li>
+                <h3><a href="<?php echo Utils::createLink('detail', array('id' => $clientsocials->getId())) ?>"><?php echo Utils::escape($clientsocials->getName()); ?></a></h3>
+                <div class="card"><span class="label">Created By:</span> <?php echo Utils::escape($clientsocials->getCreatedBy()); ?><br>
+                <span class="label">Created On:</span> <?php echo Utils::escape(Utils::formatDateTime($clientsocials->getCreatedOn())); ?><br>
+                <span class="label">Last modified:</span> <?php echo Utils::escape(Utils::formatDateTime($clientsocials->getLastModifiedOn())); ?></div>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>

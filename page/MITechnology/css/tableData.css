@@ -1,0 +1,54 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15-lug-2014, 15.47.17
+    Author     : flaviovilla
+*/
+.Villa{   
+    height: 45px;
+    width: 1000px;
+    background-color: transparent;
+    font-family:Arial, sans-serif;
+    text-align: center;
+    font-size: x-small;
+    line-height: 1.35em;
+}
+
+.Villa table{
+    width: 950px;
+}
+
+.Villa table td{
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+}
+
+tbody div{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+tbody .value div{
+    background-color: #FFFFFF;
+    color: #444;
+    line-height: 1.35em;
+    font-weight: bold;
+    font-size: x-small;
+}
+
+tbody .desc div{
+    text-transform: lowercase;
+    color: white;
+    height: 20px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    background-color:#d3d3d3;
+}
+#youtube tbody .desc div {background-color: #df3434;}
+#facebook tbody .desc div {background-color: #3a5896;}
+#twitter tbody .desc div {background-color: rgb(78, 194, 220);}
+#instagram tbody .desc div {background-color: #413A33;}
